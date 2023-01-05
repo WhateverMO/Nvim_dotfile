@@ -5,6 +5,7 @@ return require('packer').startup(function(use)
 	use { "williamboman/mason.nvim" }
 	use { "williamboman/mason-lspconfig.nvim" }
 	use { "neovim/nvim-lspconfig" }
+	use { "williamboman/nvim-lsp-installer" }
 	-- cmp plugin
 	use { "hrsh7th/nvim-cmp" }
 	use { "hrsh7th/cmp-nvim-lsp" }
@@ -14,6 +15,7 @@ return require('packer').startup(function(use)
 	use { "hrsh7th/cmp-path" }
 	use { "hrsh7th/cmp-buffer" }
 	use { "hrsh7th/vim-vsnip" }
+	use {'rafamadriz/friendly-snippets'}
 	-- autopairs
 	use {
 		"windwp/nvim-autopairs",
@@ -47,4 +49,7 @@ return require('packer').startup(function(use)
 			ts_update()
 		end,
 	}
+
+	-- lspkind
+	use {'onsails/lspkind-nvim'}
 end)

@@ -109,6 +109,16 @@ _G.packer_plugins = {
     path = "/home/zjj/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/zjj/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/zjj/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
+    url = "https://github.com/onsails/lspkind-nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/zjj/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -139,6 +149,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/zjj/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/zjj/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

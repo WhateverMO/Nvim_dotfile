@@ -8,5 +8,4 @@ func main(){
 	fmt.Println("Hello zjj")
 	fmt.Println("add window border")
 	fmt.Println(value)
-	
 }
