@@ -6,6 +6,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-	open_on_setup = true,
+	open_on_setup = false,
 	ignore_buffer_on_setup = true,
 })

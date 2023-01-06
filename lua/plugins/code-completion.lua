@@ -77,16 +77,7 @@ cmp.setup({
 		})
 	},
 
-	mapping = {
-		['<Tab>'] = cmp.mapping.select_next_item(),
-		['<S-Tab>'] = cmp.mapping.select_prev_item(),
-		['<C-space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		}),
-	}
+	mapping = require('pluginsKMappings').cmp(cmp)
 })
 
 -- Use buffer source for `/`.
