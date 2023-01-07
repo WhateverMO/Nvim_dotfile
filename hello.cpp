@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main (int argc, char *argv[])
-{
-	std::cout << "right" << std::endl;
-	return 0;
+int main(int argc, char *argv[]) {
+  std::cout << "right" << std::endl;
+  return 0;
 }

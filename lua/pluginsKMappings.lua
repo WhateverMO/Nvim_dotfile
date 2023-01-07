@@ -1,14 +1,19 @@
 -- plugins key mappings
 
 local map = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local pluginKeys = {}
 local opt = {
   noremap = true,
   silent = true,
 }
 
+-- leader key is space
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- press n to open nvim-tree
-map('n','n',[[:NvimTreeToggle<CR>]],{})
+map('n','<leader>n',[[:NvimTreeToggle<CR>]],{})
 
 -- Nvim-dap keymappings
 -- press F5 to debug continue
@@ -32,17 +37,39 @@ map('n','dl',[[:lua require'dap'.run_last()<CR>]],{})
 
 -- bufferline
 -- 左右Tab切换
-map("n", "<Tab>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<S-Tab>", ":BufferLineCycleNext<CR>", opt)
--- "moll/vim-bbye" 关闭当前 buffer
-map("n", "<leader>bc", ":Bdelete!<CR>", opt)
+map("n",'<S-Tab>',[[:BufferLineCyclePrev<CR>]],opt)
+map("n",'<Tab>',[[:BufferLineCycleNext<CR>]],opt)
 -- 关闭左/右侧标签页
-map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
-map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
+map("n",'<leader>bh',[[:BufferLineCloseLeft<CR>]],opt)
+map("n",'<leader>bl',[[:BufferLineCloseRight<CR>]],opt)
 -- 关闭其他标签页
-map("n", "<leader>bo", ":BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>", opt)
+map("n",'<leader>bo',[[:BufferLineCloseRight<CR>:BufferLineCloseLeft<CR>]],opt)
 -- 关闭选中标签页
-map("n", "<leader>bp", ":BufferLinePickClose<CR>", opt)
+map("n",'<leader>bp',[[:BufferLinePickClose<CR>]],opt)
+map("n",'<leader>bml',[[:BufferLineMoveNext<CR>]],opt)
+map("n",'<leader>bmh',[[:BufferLineMovePrev<CR>]],opt)
+
+-- telescope key mappings
+local telescope_builtin = require('telescope.builtin')
+keymap('n','<leader>ff',telescope_builtin.find_files,{})
+keymap('n','<leader>fg',telescope_builtin.live_grep,{})
+keymap('n','<leader>fb',telescope_builtin.buffers,{})
+keymap('n','<leader>fh',telescope_builtin.help_tags,{})
+
+-- terminal support float
+pluginKeys.toggleTerm_map = function(toggleterm)
+  keymap({ "n", "t" }, "<leader>tt", toggleterm.toggleTab)
+  keymap({ "n", "t" }, "<leader>tf", toggleterm.toggleFloat)
+  keymap({ "n", "t" }, "<M-Enter>", toggleterm.toggleFloat)
+  keymap({ "n", "t" }, "<leader>tl", toggleterm.toggleRight)
+  keymap({ "n", "t" }, "<leader>td", toggleterm.toggleDown)
+  keymap({ "n", "t" }, "<leader>tg", toggleterm.toggleGit)
+end
+
+-- format all code
+keymap({'n','t','i'}, "<M-m>",[[<Esc>:Neoformat<CR>a]], opt)
+
+-- nvim-cmp key mappings
 pluginKeys.cmp = function (cmp)
 	return {
 		['<Tab>'] = cmp.mapping.select_next_item(),

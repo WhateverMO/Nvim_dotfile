@@ -17,6 +17,9 @@ require'lspconfig'.sumneko_lua.setup {
       telemetry = {
         enable = false,
       },
+      completion = {
+        callSnippet = "Replace"
+      }
     },
   },
 }

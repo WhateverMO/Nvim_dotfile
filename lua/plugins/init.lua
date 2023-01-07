@@ -79,6 +79,21 @@ packer.startup(function(use)
 			ts_update()
 		end,
 	}
+	-- format
+	use {'sbdchd/neoformat'}
+	-- rainbow pairs
+	use {"p00f/nvim-ts-rainbow"}
+	-- keymappings informations
+	use {
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			}
+		end
+	}
 	-- lspkind
 	use {'onsails/lspkind-nvim'}
 	-- lualine
@@ -88,6 +103,35 @@ packer.startup(function(use)
 	}
 	-- give me tags
 	use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+	-- comment
+	use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+	}
+	-- term support float
+	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+		require("toggleterm").setup()
+	end}
+	-- indent_blankline
+	use {
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup { filetype_exclude = { "dashboard" }}
+		end
+	}
+	-- enhance lua 
+	use {"folke/neodev.nvim"}
+	-- to find files
+	use {
+		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		requires = { {'nvim-lua/plenary.nvim'} }
+	}
+	-- dashboard
+	use {'glepnir/dashboard-nvim'}
+	-- startuptime
+	use {'dstein64/vim-startuptime'}
 end)
 
 require("plugins/file-explorer")
@@ -104,3 +148,8 @@ require("plugins/debugging")
 require("plugins/styling")
 require("plugins/syntax-highlight")
 require("plugins/autopairs")
+require("plugins/dashboard")
+require("plugins/indent_blankline")
+require("plugins/telescope")
+require("plugins/toggleTerm")
+require("plugins/neodev")
