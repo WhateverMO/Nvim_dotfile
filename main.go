@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main(){
+func main() {
 	value := 10
 	fmt.Println("fix code suggestions")
 	fmt.Println("Hello zjj")
