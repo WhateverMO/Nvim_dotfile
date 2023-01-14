@@ -39,14 +39,27 @@ packer.startup(function(use)
 	use({ "neovim/nvim-lspconfig" })
 	use({ "williamboman/nvim-lsp-installer" })
 	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	})
+	use({
+		"folke/lsp-colors.nvim",
+		config = function()
+			require("lsp-colors").setup({
+				Error = "#db4b4b",
+				Warning = "#e0af68",
+				Information = "#0db9d7",
+				Hint = "#10B981",
+			})
+		end,
+	})
+	use({
 		"glepnir/lspsaga.nvim",
 		branch = "main",
 		config = function()
-			local saga = require("lspsaga")
-
-			saga.init_lsp_saga({
-				-- your configuration
-			})
+			require("lspsaga").setup({})
 		end,
 	})
 	-- cmp plugin
@@ -77,8 +90,25 @@ packer.startup(function(use)
 	-- DAP for debugging
 	use({ "mfussenegger/nvim-dap" })
 	use({
+		"theHamsta/nvim-dap-virtual-text",
+		config = function()
+			require("nvim-dap-virtual-text").setup({})
+		end,
+	})
+	use({
 		"rcarriga/nvim-dap-ui",
 		requires = { "mfussenegger/nvim-dap" },
+	})
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
 	})
 	-- colorscheme dracula.nvim
 	use({ "Mofiqul/dracula.nvim" })
@@ -107,12 +137,20 @@ packer.startup(function(use)
 	})
 	-- lspkind
 	use({ "onsails/lspkind-nvim" })
+	-- run code
+	use({
+		"michaelb/sniprun",
+		run = "bash ./install.sh",
+		config = function()
+			require("sniprun").setup({})
+		end,
+	})
 	-- lualine
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
-	-- give me tags
+	-- give me tabs
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 	-- comment
 	use({
@@ -144,15 +182,42 @@ packer.startup(function(use)
 		tag = "0.1.0",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
+	-- git support
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 	-- dashboard
 	use({ "glepnir/dashboard-nvim" })
 	-- startuptime
 	use({ "dstein64/vim-startuptime" })
+	-- todo comments
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
 end)
+
+-- TODO: chech todo comments
+-- PERF:
+-- HACK:
+-- WARN:
+-- NOTE:
+-- TEST:
+-- FIX:
 
 require("plugins/file-explorer")
 require("plugins/line_lua")
-require("plugins/tags")
+require("plugins/bufferline")
 require("plugins/mason-config")
 require("plugins/lspsetup")
 require("plugins/clangd")
