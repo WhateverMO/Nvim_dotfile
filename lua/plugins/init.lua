@@ -48,7 +48,7 @@ packer.startup(function(use)
 		"folke/lsp-colors.nvim",
 		config = function()
 			require("lsp-colors").setup({
-				Error = "#db4b4b",
+				Error = "#da4949",
 				Warning = "#e0af68",
 				Information = "#0db9d7",
 				Hint = "#10B981",
@@ -110,8 +110,41 @@ packer.startup(function(use)
 			})
 		end,
 	})
-	-- colorscheme dracula.nvim
-	use({ "Mofiqul/dracula.nvim" })
+	-- colorscheme dracula.nvim, tokyonight.nvim
+	-- use({ "Mofiqul/dracula.nvim" })
+	use({ "folke/tokyonight.nvim" })
+	-- color picker and show color
+	use({ "uga-rosa/ccc.nvim" })
+	-- nvim-hlslens
+	use({ "kevinhwang91/nvim-hlslens" })
+	-- scrollbar
+	use({
+		"petertriho/nvim-scrollbar",
+		config = function()
+			local colors = require("tokyonight.colors").setup()
+			require("scrollbar").setup({
+				handle = {
+					color = colors.bg_highlight,
+				},
+				marks = {
+					Search = { color = colors.orange },
+					Error = { color = colors.error },
+					Warn = { color = colors.warning },
+					Info = { color = colors.info },
+					Hint = { color = colors.hint },
+					Misc = { color = colors.purple },
+				},
+			})
+		end,
+	})
+	-- cmd menu
+	use({
+		"gelguy/wilder.nvim",
+		config = function()
+			-- config goes here
+			vim.cmd[[call wilder#setup({'modes': [':', '/', '?']})]]
+		end,
+	})
 	-- nvim-treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -234,3 +267,4 @@ require("plugins/indent_blankline")
 require("plugins/telescope")
 require("plugins/toggleTerm")
 require("plugins/neodev")
+require("plugins/ccc")

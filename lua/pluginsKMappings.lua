@@ -120,6 +120,11 @@ keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, nor
 keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 keymap("n", "<leader>xr", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
+-- ccc Create Color Code
+map("n","<C-C>",[[:CccPick<CR>]],opt)
+map("i","<C-C>",[[<Esc>:CccPick<CR>a]],opt)
+keymap("n","<leader>cc","<cmd>CccHighlighterToggle<CR>",opt)
+
 -- nvim-cmp key mappings
 pluginKeys.cmp = function(cmp)
 	return {

@@ -1,19 +1,18 @@
-
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { "clangd", "rust_analyzer", "pyright", "tsserver" }
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
-  }
+	lspconfig[lsp].setup({
+		-- on_attach = my_custom_on_attach,
+		capabilities = capabilities,
+	})
 end
 
-vim.opt.completeopt = { 'menuone','noselect','noinsert','preview' }
+vim.opt.completeopt = { "menuone", "noselect", "noinsert", "preview" }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
 
 local cmp = require("cmp")
@@ -22,12 +21,12 @@ local lspkind = require("lspkind")
 cmp.setup({
 	-- Configurations
 	sources = {
-		{ name = 'path' },
-		{ name = 'nvim_lsp', keyword_length = 3 },
-		{ name = 'nvim_lsp_signature_help' },
-		{ name = 'nvim_lua', keywordlength = 2 },
-		{ name = 'buffer', keywordlength = 2 },
-		{ name = 'vsnip', keywordlength = 2 },
+		{ name = "path" },
+		{ name = "nvim_lsp", keyword_length = 3 },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "nvim_lua", keywordlength = 2 },
+		{ name = "buffer", keywordlength = 2 },
+		{ name = "vsnip", keywordlength = 2 },
 	},
 
 	snippet = {
@@ -50,7 +49,7 @@ cmp.setup({
 		-- completion = cmp.config.window.bordered(),
 		-- documentation = cmp.config.window.bordered(),
 	},
-	
+
 	--[[
 	formatting = {
 		fields = { 'menu','abbr','kind' },
@@ -70,14 +69,21 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			with_text = true, -- do not show text alongside icons
 			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-			before = function (entry, vim_item)
-				vim_item.menu = "["..string.upper(entry.source.name).."]"
+			fields = { "menu", "abbr", "kind" },
+			before = function(entry, vim_item)
+				local menu_icon = {
+					nvim_lsp = "力",
+					vsnip = "",
+					buffer = "﬘",
+					path = "",
+				}
+				vim_item.menu = menu_icon[entry.source.name]
 				return vim_item
-			end
-		})
+			end,
+		}),
 	},
 
-	mapping = require('pluginsKMappings').cmp(cmp)
+	mapping = require("pluginsKMappings").cmp(cmp),
 })
 
 -- Use buffer source for `/`.
