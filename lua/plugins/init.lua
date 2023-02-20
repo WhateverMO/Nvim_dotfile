@@ -142,7 +142,7 @@ packer.startup(function(use)
 		"gelguy/wilder.nvim",
 		config = function()
 			-- config goes here
-			vim.cmd[[call wilder#setup({'modes': [':', '/', '?']})]]
+			vim.cmd([[call wilder#setup({'modes': [':', '/', '?']})]])
 		end,
 	})
 	-- nvim-treesitter
@@ -240,7 +240,7 @@ packer.startup(function(use)
 	})
 end)
 
--- TODO: chech todo comments
+-- TODO: check todo comments
 -- PERF:
 -- HACK:
 -- WARN:
@@ -260,6 +260,7 @@ require("plugins/luaLSP")
 require("plugins/code-completion")
 require("plugins/debugging")
 require("plugins/styling")
+require("plugins/hlslens")
 require("plugins/syntax-highlight")
 require("plugins/autopairs")
 require("plugins/dashboard")
